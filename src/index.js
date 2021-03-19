@@ -11,6 +11,10 @@ const config = {
 const mysql = require("mysql");
 const connection = mysql.createConnection(config);
 
+connection.query("INSERT INTO people SET ?", { name: "Felipe" }, (err) => {
+  if (err) console.error("Error while inserting a name on DB:\n", err);
+});
+
 app.use(express.json());
 
 app.post("/", ({ body }, res) => {
@@ -26,7 +30,14 @@ app.post("/", ({ body }, res) => {
 app.get("/", (_, res) => {
   connection.query("SELECT * FROM people", (err, result) => {
     if (err) return res.status(500);
-    res.json(result);
+    const resHtml = `
+      <h1>Full Cycle Rocks!</h1>
+      <ul>
+        ${result.map((dbRow) => `<li>${dbRow.name}</li>`)}
+      </ul>
+    `;
+
+    return res.send(resHtml);
   });
 });
 
