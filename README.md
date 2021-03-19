@@ -6,7 +6,7 @@ The proposal was create a docker environment for the nodejs app on src/ dir and 
 
 To run it, please, clone the repo and run `docker-compose up -d` on root dir.
 
-When containers are ready, make a POST request to `http://localhost:8080` with a JSON payload like this:
+When containers are ready, make a POST request to `http://localhost:8080/` with a JSON payload like this:
 
 ```json
 {
@@ -17,3 +17,5 @@ When containers are ready, make a POST request to `http://localhost:8080` with a
 Of course, you can change the name value :smile:
 
 You should see a http 201 response with content: `CodeEducation Rocks!`
+
+If you hit the same endpoint with a GET request, you will get a list with all names on database.
