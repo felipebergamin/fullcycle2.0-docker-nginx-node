@@ -23,6 +23,13 @@ app.post("/", ({ body }, res) => {
   });
 });
 
+app.get("/", (_, res) => {
+  connection.query("SELECT * FROM people", (err, result) => {
+    if (err) return res.status(500);
+    res.json(result);
+  });
+});
+
 app.listen(HTTP_PORT, () => {
   console.log("🚀 server ready on port " + HTTP_PORT);
 });
