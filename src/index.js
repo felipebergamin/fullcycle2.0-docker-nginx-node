@@ -14,7 +14,7 @@ const connection = mysql.createConnection(config);
 app.use(express.json());
 
 app.post("/", ({ body }, res) => {
-  if (!body) return res.status(402).end();
+  if (!body) return res.status(400).end();
   const { name } = body;
 
   connection.query("INSERT INTO people SET ?", { name }, (err) => {
