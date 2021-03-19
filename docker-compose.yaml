@@ -19,6 +19,8 @@ services:
       context: .docker/nginx
     ports:
       - "8080:80"
+    depends_on:
+      - app
     networks:
       - node-network
 
@@ -29,12 +31,9 @@ services:
     container_name: db
     restart: always
     tty: true
-    # volumes: 
-    #   - ./mysql/dbdata:/var/lib/mysql
     environment: 
       - MYSQL_DATABASE=nodedb
       - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_USER=root
     networks: 
       - node-network
 
